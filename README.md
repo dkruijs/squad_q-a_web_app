@@ -1,7 +1,28 @@
 SQuAD Q&A web app
 ==============================
 
-A deep learning-based reading comprehension question answering model based on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/), deployable as a web app.
+A deep learning-based model for answering reading comprehension questions, based on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/), deployable as a web app. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
+
+
+Documentation
+------------
+
+Install
+------------
+
+Requirements
+------------
+
+More information
+------------
+
+Contributing
+------------
+
+License
+------------
+This project is copyright © 2020 Daan Kruijs. It is free software, and may be redistributed under the terms specified in the LICENSE file (GNU-GPLv3 license).
+
 
 Project Organization
 ------------
