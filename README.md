@@ -1,7 +1,7 @@
 SQuAD Q&A web app
 ==============================
 
-A deep learning-based reading comprehension question answering model based on the SQuAD dataset, deployable as a web app.
+A deep learning-based reading comprehension question answering model based on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/), deployable as a web app.
 
 Project Organization
 ------------
