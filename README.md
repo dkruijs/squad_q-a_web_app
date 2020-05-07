@@ -3,7 +3,7 @@ SQuAD Q&A web app
 
 A deep learning-based model based on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/) for answering reading comprehension questions, deployable as a web app. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
 
-***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](./docs/Capstone proposal.pdf) I wrote as part of the Nanodegree.
+***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](docs/Capstone proposal.pdf) I wrote as part of the Nanodegree.
 
 
 Documentation
