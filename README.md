@@ -8,18 +8,23 @@ A deep learning-based model based on the [SQuAD dataset](https://rajpurkar.githu
 
 Documentation
 ------------
+_Coming soon_
 
 Install
 ------------
+_Coming soon_
 
 Requirements
 ------------
+_Coming soon_
 
 More information
 ------------
+_Coming soon_
 
 Contributing
 ------------
+_Coming soon_
 
 License
 ------------
