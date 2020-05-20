@@ -1,6 +1,6 @@
 # Original ALBERT models to build off of
-models/albert_base_v2.tar.gz
-models/albert_large_v2.tar.gz
+models/raw/*
+!models/raw/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -8,6 +8,13 @@ __pycache__/
 
 # C extensions
 *.so
+
+# AWS credentials (stub)
+# **/credentials.json
+# **/token.pickle
+
+# Venv
+/venv/
 
 # Distribution / packaging
 .Python

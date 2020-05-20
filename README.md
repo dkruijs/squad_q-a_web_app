@@ -1,7 +1,7 @@
 SQuAD Q&A web app
 ==============================
 
-A deep learning-based model based on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/) for answering reading comprehension questions, deployable as a web app. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
+A deep learning-based model based on Google's [ALBERT](https://github.com/google-research/ALBERT) and trained on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/) for answering reading comprehension questions, deployable as a web app. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
 
 ***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](docs/Capstone_proposal.pdf) I wrote as part of the Nanodegree.
 
@@ -10,9 +10,19 @@ Documentation
 ------------
 _Coming soon_
 
-Install
+Getting started
 ------------
-_Coming soon_
+* Install `pipenv` and its dependency `pyenv`: 
+``` 
+pip install pipenv pyenv
+```
+* Install all requirements in the Pipfile into a new pipenv virtual environment (please execute this command in the folder containing the Pipfile):
+```
+pipenv install 
+```
+
+**Note**: The virtual environment management is based on pipenv; this means you can both install this package in its development version (in order to extend it for your own uses) and its non-development version (in order to simply run/use it). Use `pipenv install` for the non-development version, `pipenv install --dev` for the development version.
+
 
 Requirements
 ------------
