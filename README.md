@@ -12,9 +12,9 @@ _Coming soon_
 
 Getting started
 ------------
-* Install `pipenv` and its dependency `pyenv`: 
+* Install `pipenv`: 
 ``` 
-pip install pipenv pyenv
+pip install pipenv
 ```
 * Install all requirements in the Pipfile into a new pipenv virtual environment (please execute this command in the folder containing the Pipfile):
 ```
