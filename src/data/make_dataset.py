@@ -4,16 +4,40 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 
+import os
+import json
+import pandas
+
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
 @click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
+def main(input_filepath='../data/raw', output_filepath='../data/processed'):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
+    # TODO: fill in logger
+    # TODO: Makefile requirements: `pipenv install --dev`?
+    # TODO: uncomment and fix Pipfile src install for prod
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
+
+    in_file = os.path.join(input_filepath, "train-v2.0.json")
+    with open(in_file) as f:
+        train = json.load(f)
+
+    import pprint 
+    pp = pprint.PrettyPrinter()
+    pp.pprint(train['data'][3])
+    out_file = os.path.join(output_filepath, "test.json")
+    with open(out_file, 'w+') as f:
+        f.write(json.dumps(train['data'][3], indent=4))
+
+    # TODO: decide on tabular? structure    
+
+    # ---> more todos in features
+
+    
 
 
 if __name__ == '__main__':

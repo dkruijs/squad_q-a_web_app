@@ -5,6 +5,16 @@ A deep learning-based model based on Google's [ALBERT](https://github.com/google
 
 ***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](docs/Capstone_proposal.pdf) I wrote as part of the Nanodegree.
 
+Problem statement
+-----------------
+The SQuAD dataset consists of 100,000 excerpts from high-quality Wikipedia articles ranging from celebrities to abstract concepts, combined with multiple reading comprehension questions per excerpt. It follows a structure such that the answers to the questions can be found in the excerpts as a span of text, either single or multiple words, entities or no:
+
+![](https://rajpurkar.github.io/mlx/qa-and-squad/example-squad.png)
+(image source: [blog by one of the dataset's maintainers on the reasoning behind and background of the SQuAD dataset](https://rajpurkar.github.io/mlx/qa-and-squad/))
+
+My goal in this project is to create an end-to-end deep learning product based on Google's [ALBERT](https://github.com/google-research/ALBERT) but not using the given pre-training scripts in Google's repo, only using the model artifacts and my own TensorFlow code. Of course, I do look at the ALBERT repo's code and other examples on the internet for conceptual inspiration, but I will cite all such influences via in-line comments.
+
+The project being 'end-to-end' refers to an added goal that it (or an inference-ready trained production model setup) should be easily deployable right after cloning the repo, using docker or some other solution either locally or on a preferred cloud platform. 
 
 Documentation
 ------------
