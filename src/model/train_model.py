@@ -1,27 +1,15 @@
 import click
 import logging
-from dotenv import find_dotenv, load_dotenv
-from pathlib import Path
-
-class Tokenizer:
-    pass
 
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
 @click.argument('output_filepath', type=click.Path())
 def main():
-
     pass
-    # TODO: remove irrelevant characters (i.e. non-alphanumeric) & convert lowercase
 
-    # TODO: tokenize by separating into separate words  (word2vec?)
 
-    # TODO: lemmatize using common tool 
-
-    # TODO: how to input into model? one sentence from context & one question at a time? 
-    # or whole context and a question at a time? Look at SageMaker proj for solution?
-    # --> sentence piece tokenization (inspired on the `run_squad_v2.py` script in the ALBERT repo).
+    # TODO: start dropout percentage at 0.1 (inspired on `run_squad_v2.py` in ALBERT repo)
 
 
 

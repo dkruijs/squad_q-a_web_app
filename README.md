@@ -5,6 +5,12 @@ A deep learning-based model based on Google's [ALBERT](https://github.com/google
 
 ***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](docs/Capstone_proposal.pdf) I wrote as part of the Nanodegree.
 
+
+**Sources**:
+https://medium.com/@joyceye04/deploy-a-servable-bert-qa-model-using-tensorflow-serving-d848f9797d9
+https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/
+
+
 Problem statement
 -----------------
 The SQuAD dataset consists of 100,000 excerpts from high-quality Wikipedia articles ranging from celebrities to abstract concepts, combined with multiple reading comprehension questions per excerpt. It follows a structure such that the answers to the questions can be found in the excerpts as a span of text, either single or multiple words, entities or no:
@@ -22,17 +28,19 @@ _Coming soon_
 
 Getting started
 ------------
-* Install `pipenv`: 
+
+* Create a virtual environment and activate it: 
 ``` 
-pip install pipenv
+virtualenv -p python3.7 venv
+source /venv/bin/activate
 ```
-* Install all requirements in the Pipfile into a new pipenv virtual environment (please execute this command in the folder containing the Pipfile):
-```
-pipenv install 
-```
+or, on Windows hosts (Git bash):
+`source /venv/Scripts/activate`
 
-**Note**: The virtual environment management is based on pipenv; this means you can both install this package in its development version (in order to extend it for your own uses) and its non-development version (in order to simply run/use it). Use `pipenv install` for the non-development version, `pipenv install --dev` for the development version.
-
+* Once inside the virtual environment, install requirements: 
+``` 
+pip install -r requirements.txt
+```
 
 Requirements
 ------------

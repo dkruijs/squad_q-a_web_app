@@ -6,6 +6,7 @@ from dotenv import find_dotenv, load_dotenv
 
 import os
 import json
+import pandas
 
 
 @click.command()
