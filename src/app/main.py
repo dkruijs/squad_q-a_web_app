@@ -4,24 +4,27 @@ from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 import tensorflow as tf
 
-from transformers import TFBertForQuestionAnswering
-from transformers import BertTokenizer
+from .init_model import init_BERT
 
-import os
-import json
-import pandas
+# TODO attribute all sources
+# TODO object-oriented structure; make one class with a data transformer method and an infer method
+# TODO embed in a simple web app, input-output
+# TODO dockerize
+# TODO check other requirements
+# TODO clean up gitignore, other files 
 
-
+# TODO turn into class
 def main():
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
     # TODO: fill in logger
     logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+    logger.info('Initializing model serving.')
 
-    tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
-    model = TFBertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+    model, tokenizer = init_BERT()
+
+
 
     question = "Paris is the capital of France."
     answer_text = "Of which country is Paris the capital?"

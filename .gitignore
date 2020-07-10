@@ -9,10 +9,6 @@ __pycache__/
 # C extensions
 *.so
 
-# AWS credentials (stub)
-# **/credentials.json
-# **/token.pickle
-
 # Venv
 /venv/
 
