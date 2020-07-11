@@ -9,7 +9,7 @@ A deep learning-based model based on Google's [ALBERT](https://github.com/google
 **Sources**:
 https://medium.com/@joyceye04/deploy-a-servable-bert-qa-model-using-tensorflow-serving-d848f9797d9
 https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/
-
+https://medium.com/datalab-log/serve-models-fast-with-flask-371726521591
 
 Problem statement
 -----------------
