@@ -10,10 +10,14 @@ COPY ./src/app/website/nginx.conf /etc/nginx/nginx.conf
 COPY ./src /app
 COPY requirements.txt /app
 COPY setup.py /app
-RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 8080 and 80
+# Expose port 8080, 80 and 90
 EXPOSE 8080 80
 
-ENTRYPOINT ["/bin/bash"]
-CMD ["./app/start_server.sh"]
+CMD ["python", "./app/api.py"]
+CMD ["nginx", "-g", "daemon off;"]
+
+
+#ENTRYPOINT ["/bin/bash"]
+#CMD ["./app/start_server.sh &"]

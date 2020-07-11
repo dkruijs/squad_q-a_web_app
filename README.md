@@ -35,7 +35,7 @@ Getting started
 Build the docker image, then run it:
 ```
 build --rm -t dkruijs/qa_bert .
-docker run --name qa_bert 
+docker run --name qa_bert -d -p 8080:80 dkruijs/qa_bert
 ```
 
 misc

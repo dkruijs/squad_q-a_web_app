@@ -1,4 +1,4 @@
 #! /bin/bash
 
 nginx -g 'daemon off;' &
-python api.py &
+#python ./app/api.py &
