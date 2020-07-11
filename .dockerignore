@@ -1,0 +1,7 @@
+# ignore all files from build context,
+*
+
+# except:
+!/src
+!requirements.txt
+!setup.py

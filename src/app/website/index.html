@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Sentiment Analysis Web App</title>
+        <title>BERT-SQuAD Web App</title>
         <meta charset="utf-8">
         <meta name="viewport"  content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,21 +11,36 @@
         <script>
          "use strict";
          function submitForm(oFormElement) {
-             var xhr = new XMLHttpRequest();
-             xhr.onload = function() {
-                 var result = parseFloat(xhr.responseText);
-                 var resultElement = document.getElementById('result');
-                 if (result == 0) {
-                     resultElement.className = 'bg-danger';
-                     resultElement.innerHTML = 'Your review was NEGATIVE!';
-                 } else {
-                     resultElement.className = 'bg-success';
-                     resultElement.innerHTML = 'Your review was POSITIVE!';
-                 }
-             }
-             xhr.open (oFormElement.method, oFormElement.action, true);
-             var review = document.getElementById('review');
-             xhr.send (review.value);
+
+            var answer_text = document.getElementById('answer_text');
+            var question = document.getElementById('question');
+
+             // POST
+            fetch('http://localhost:5000/', {
+
+                // Specify the method
+                method: 'POST',
+
+                // Turn off CORS to allow this request
+                mode: 'no-cors',
+
+
+                // A JSON payload
+                body: JSON.stringify({
+                    "answer_text": answer_text,
+                    "question": question
+                })
+            }).then(function (response) { // At this point, Flask has printed our JSON
+                return response.text();
+            }).then(function (text) {
+
+                console.log('POST response: ');
+
+                // Should be 'OK' if everything was successful
+                console.log(text);
+            });
+
+
              return false;
          }
         </script>
@@ -34,14 +49,18 @@
     <body>
 
         <div class="container">
-            <h1>Is your review positive, or negative?</h1>
-            <p>Enter your review below and click submit to find out...</p>
+            <h1>Ask BERT a question</h1>
+            <p>Enter some context below and ask a question about it!</p>
             <form method="POST"
-                  action="**REPLACE WITH PUBLIC API URL**"
-                  onsubmit="return submitForm(this);" >                     <!-- HERE IS WHERE YOU NEED TO ENTER THE API URL -->
+                  action="localhost:5000/"
+                  onsubmit="return submitForm(this);" >
                 <div class="form-group">
-                    <label for="review">Review:</label>
-                    <textarea class="form-control"  rows="5" id="review">Please write your review here.</textarea>
+                    <label for="answer_text">Text:</label>
+                    <textarea class="form-control"  rows="5" id="answer_text">Please insert a longer text here.</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="question">Text:</label>
+                    <textarea class="form-control"  rows="1" id="question">Please write a question here that is answerable by looking at the above text.</textarea>
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>

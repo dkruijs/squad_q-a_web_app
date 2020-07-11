@@ -10,6 +10,7 @@ A deep learning-based model based on Google's [ALBERT](https://github.com/google
 https://medium.com/@joyceye04/deploy-a-servable-bert-qa-model-using-tensorflow-serving-d848f9797d9
 https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/
 https://medium.com/datalab-log/serve-models-fast-with-flask-371726521591
+https://www.linkedin.com/pulse/serve-static-files-from-docker-via-nginx-basic-example-arun-kumar/
 
 Problem statement
 -----------------
@@ -28,6 +29,24 @@ _Coming soon_
 
 Getting started
 ------------
+
+**run**:
+
+Build the docker image, then run it:
+```
+build --rm -t dkruijs/qa_bert .
+docker run --name qa_bert 
+```
+
+misc
+```
+docker run --name qa_bert -d -p 8080:80 dkruijs/qa_bert
+docker run -it --entrypoint /bin/bash dkruijs/qa_bert
+```
+
+Then open a browser window on your host to the address `localhost:8080` to see the web app.
+
+**development**:
 
 * Create a virtual environment and activate it: 
 ``` 
