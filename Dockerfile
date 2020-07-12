@@ -1,12 +1,6 @@
 FROM python:3.7-slim-stretch
 WORKDIR /app
 
-# Install the nginx web server:
-RUN apt-get update && apt-get install nginx -y
-
-# Overwrite nginx config file:
-COPY ./src/app/website/nginx.conf /etc/nginx/nginx.conf
-
 # Copy and install source code and python packages:
 COPY ./src /app
 COPY requirements.txt /app

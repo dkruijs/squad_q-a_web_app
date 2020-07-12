@@ -8,12 +8,9 @@ from transformers import TFBertForQuestionAnswering
 from transformers import BertTokenizer
 
 
-# TODO attribute all sources
-# TODO clean up gitignore, other files
 # TODO error catching, logging
 # TODO all todos
 # TODO docstrings
-# TODO OPTIONAL visual indication 'waiting for response...' in web app
 
 
 class BertQAModel:

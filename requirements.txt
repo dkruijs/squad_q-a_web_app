@@ -7,9 +7,9 @@ python-dateutil==2.8.1
 pytz==2020.1
 six==1.15.0
 python-dotenv==0.13.0
-# tensorflow==2.2.0
-# sentencepiece==0.1.91
+tensorflow==2.2.0
+sentencepiece==0.1.91
 Flask==1.1.2
 Flask-RESTful==0.3.8
 flask_cors
-# transformers==3.0.1
+transformers==3.0.1
