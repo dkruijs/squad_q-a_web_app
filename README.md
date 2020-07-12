@@ -1,9 +1,7 @@
 SQuAD Q&A web app
 ==============================
 
-A deep learning-based model based on Google's [ALBERT](https://github.com/google-research/ALBERT) and trained on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/) for answering reading comprehension questions, deployable as a web app. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
-
-***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](docs/Capstone_proposal.pdf) I wrote as part of the Nanodegree.
+A deployable Q&A web app based on a version of Google's [BERT](https://github.com/google-research/bert) pretrained on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/), specifically [Huggingface transformers](https://huggingface.co/transformers/)' `TFBertForQuestionAnswering` model, for answering reading comprehension questions. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
 
 Problem statement
 -----------------
@@ -12,7 +10,7 @@ The SQuAD dataset consists of 100,000 excerpts from high-quality Wikipedia artic
 ![](https://rajpurkar.github.io/mlx/qa-and-squad/example-squad.png)
 (image source: [blog by one of the dataset's maintainers on the reasoning behind and background of the SQuAD dataset](https://rajpurkar.github.io/mlx/qa-and-squad/))
 
-My goal in this project is to create an end-to-end deep learning product based on Google's [ALBERT](https://github.com/google-research/ALBERT) but not using the given pre-training scripts in Google's repo, only using the model artifacts and my own TensorFlow code. Of course, I do look at the ALBERT repo's code and other examples on the internet for conceptual inspiration, but I will cite all such influences via in-line comments.
+My goal in this project is to create an end-to-end deep learning product based on Google's [BERT](https://github.com/google-research/bert) but not using the given pre-training scripts in Google's repo, only using the model artifacts and my own TensorFlow code. Of course, I do look at the ALBERT repo's code and other examples on the internet for conceptual inspiration, but I will cite all such influences via in-line comments.
 
 The project being 'end-to-end' refers to an added goal that it (or an inference-ready trained production model setup) should be easily deployable right after cloning the repo, using docker or some other solution either locally or on a preferred cloud platform. 
 
@@ -31,6 +29,13 @@ docker-compose up
 ```
 
 Then open a browser window on your host to the address `localhost:80` to see the web app. When you first run the model (by entering a question and pressing the 'Submit' button) it will download some model artifacts, this will take a while too.
+
+**Validating model results**
+
+The module `src/validate/validate.py` can be used to validate model results relative to given SQuAD answers. 
+```
+python -m src.validate.validate
+```
 
 **Preparations for further development**:
 
@@ -58,6 +63,7 @@ pytz==2020.1
 six==1.15.0
 python-dotenv==0.13.0
 tensorflow==2.2.0
+scikit-learn==0.23.1
 sentencepiece==0.1.91
 Flask==1.1.2
 Flask-RESTful==0.3.8
@@ -74,6 +80,7 @@ I consulted the following online sources to arrive at this code product:
 * [Serve models fast with Flask](https://medium.com/datalab-log/serve-models-fast-with-flask-371726521591)
 * [Serve static files from docker via nginx](https://www.linkedin.com/pulse/serve-static-files-from-docker-via-nginx-basic-example-arun-kumar/)
 * [Stack Overflow -- Nginx doesn't communicate with flask rest api](https://stackoverflow.com/questions/47739828/nginx-doesnt-communicate-with-flask-rest-api-docker)
+* For the `index.html` file that contains the web app, I used the `index.html` file from the Nanodegree SageMaker notebooks as a base for the HTML structure (I replaced the JavaScript code entirely). 
 
 Contributing
 ------------

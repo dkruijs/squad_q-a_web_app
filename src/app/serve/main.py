@@ -1,16 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
-from pathlib import Path
-from dotenv import find_dotenv, load_dotenv
 import tensorflow as tf
 
 from transformers import TFBertForQuestionAnswering
 from transformers import BertTokenizer
-
-
-# TODO error catching, logging
-# TODO all todos
-# TODO docstrings
 
 
 class BertQAModel:
@@ -18,19 +11,17 @@ class BertQAModel:
         cleaned data ready to be analyzed (saved in ../processed).
     """
     def __init__(self):
-        # TODO: fill in logger
-        logger = logging.getLogger(__name__)
-        logger.info('Initializing model.')
+        self.logger = logging.getLogger(__name__)
+        self.logger.info('Initializing model.')
 
         self.model, self.tokenizer = self.init_bert()
 
-    @staticmethod
-    def init_bert():
+    def init_bert(self):
         """ Runs data processing scripts to turn raw data from (../raw) into
             cleaned data ready to be analyzed (saved in ../processed).
         """
-        logger = logging.getLogger(__name__)
-        logger.info('Initializing BERT model and tokenizer.')
+        self.logger = logging.getLogger(__name__)
+        self.logger.info('Initializing BERT model and tokenizer.')
 
         tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
         model = TFBertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
@@ -39,8 +30,11 @@ class BertQAModel:
 
     def transform_input_data(self, question, answer_text):
         """Tokenizes the input question text and contextual answer text into a dictionary
-           containing token_ids, an attention map and XXXXXXXXXXXXXXXXXXXXX
+           containing token_ids, an attention mask and token type IDs (see https://huggingface.co/transformers/glossary.html#model-inputs).
         """
+        self.logger = logging.getLogger(__name__)
+        self.logger.info('Transforming raw input data into tokenized input data.')
+
         input_dict = self.tokenizer(question, answer_text, return_tensors='tf')
         return input_dict
 
@@ -48,25 +42,28 @@ class BertQAModel:
         """Runs inference on the model using the input data, and returns a
            human-readable answer.
         """
+        self.logger = logging.getLogger(__name__)
+        self.logger.info('Running inference on the model and returning human-readable answer.')
+
         start_scores, end_scores = self.model(input_dict)
         all_tokens = self.tokenizer.convert_ids_to_tokens(input_dict["input_ids"].numpy()[0])
         answer_string = ' '.join(all_tokens[tf.math.argmax(start_scores, 1)[0]: tf.math.argmax(end_scores, 1)[0] + 1])
-        # Combine sub-word tokens into one
+        # Combine sub-word tokens into one and remove unnecessary spaces
         answer_string = answer_string.replace(" ##", "")
+        answer_string = answer_string.replace(" , ", ", ")
+        answer_string = answer_string.replace(" . ", ".")
         return answer_string
 
 
 if __name__ == '__main__':
+    """This main() function is purely here for demonstrational purposes, and can be used
+       to show a usual workflow for the codebase. 
+    """
 
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     logging.basicConfig(level=logging.INFO, format=log_fmt)
 
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
-
-    # find .env automagically by walking up directories until it's found, then
-    # load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
+    logger = logging.getLogger(__name__)
 
     bert = BertQAModel()
 
@@ -84,3 +81,5 @@ if __name__ == '__main__':
     answer = bert.run_inference(input_data)
 
     print(answer)
+    logger.info(f'Answer: {answer}')
+

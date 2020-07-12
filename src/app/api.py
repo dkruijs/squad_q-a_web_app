@@ -23,7 +23,6 @@ class BertApi(Resource):
     def post(self):
         """Performs inference on JSON-formatted question and answer data received in a
            POST-request's body.
-           :return:
         """
         webform_data = request.get_json(force=True)
 
@@ -40,5 +39,4 @@ class BertApi(Resource):
 api.add_resource(BertApi, '/')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)  #host='0.0.0.0')  # host='127.0.0.1')  #
-    # app.run(host='0.0.0.0', debug=True, port=5050)
+    app.run(debug=True, host='0.0.0.0', port=5000)
