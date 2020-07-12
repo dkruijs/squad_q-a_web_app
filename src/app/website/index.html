@@ -12,36 +12,34 @@
          "use strict";
          function submitForm(oFormElement) {
 
+            // reset answer span
+             $('#answer').text("(Consulting BERT...)");
+
             var answer_text = document.getElementById('answer_text');
             var question = document.getElementById('question');
 
-             // POST
-            fetch('http://localhost:5000/', {
-
-                // Specify the method
-                method: 'POST',
-
-                // Turn off CORS to allow this request
-                mode: 'no-cors',
-
-
-                // A JSON payload
-                body: JSON.stringify({
-                    "answer_text": answer_text,
-                    "question": question
-                })
-            }).then(function (response) { // At this point, Flask has printed our JSON
-                return response.text();
-            }).then(function (text) {
-
-                console.log('POST response: ');
-
-                // Should be 'OK' if everything was successful
-                console.log(text);
+            $.ajax({
+              type: "POST",
+              crossDomain: true,
+              contentType: "application/json; charset=utf-8",
+              url: "http://localhost:5000/",
+              headers: {
+                "accept": "application/json",
+                "Access-Control-Allow-Origin":"http://127.0.0.1:5000/"
+              },
+              data: JSON.stringify({
+                        answer_text: answer_text.value,
+                        question: question.value
+                    }),
+              success: function (response) {
+                // Provide the answer text in-page
+                 $('#answer').text(response.answer);
+              },
+              dataType: "json"
             });
 
+            return false;
 
-             return false;
          }
         </script>
 
@@ -55,12 +53,18 @@
                   action="localhost:5000/"
                   onsubmit="return submitForm(this);" >
                 <div class="form-group">
-                    <label for="answer_text">Text:</label>
-                    <textarea class="form-control"  rows="5" id="answer_text">Please insert a longer text here.</textarea>
+                    <label for="answer_text">Context:</label>
+                    <textarea class="form-control"  rows="5" id="answer_text">Please insert some text here.</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="question">Text:</label>
-                    <textarea class="form-control"  rows="1" id="question">Please write a question here that is answerable by looking at the above text.</textarea>
+                    <label for="question">Question:</label>
+                    <textarea class="form-control"  rows="1" id="question">Please write a question here that can be answered from the above text.</textarea>
+                </div>
+                <div>
+                    <label for="answer">Answer:</label>
+                    <br>
+                    <span id="answer">(Ask a question)</span>
+                    <br><br>
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>

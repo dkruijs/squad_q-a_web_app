@@ -11,6 +11,7 @@ https://medium.com/@joyceye04/deploy-a-servable-bert-qa-model-using-tensorflow-s
 https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/
 https://medium.com/datalab-log/serve-models-fast-with-flask-371726521591
 https://www.linkedin.com/pulse/serve-static-files-from-docker-via-nginx-basic-example-arun-kumar/
+https://docs.docker.com/config/containers/multi-service_container/
 
 Problem statement
 -----------------
@@ -32,7 +33,7 @@ Getting started
 
 **run**:
 
-Build the docker image, then run it:
+Build the docker image, then run it with port forwarding:
 ```
 build --rm -t dkruijs/qa_bert .
 docker run --name qa_bert -d -p 8080:80 dkruijs/qa_bert
@@ -40,8 +41,8 @@ docker run --name qa_bert -d -p 8080:80 dkruijs/qa_bert
 
 misc
 ```
-docker run --name qa_bert -d -p 8080:80 dkruijs/qa_bert
 docker run -it --entrypoint /bin/bash dkruijs/qa_bert
+docker run -it --entrypoint /bin/bash -p 8080:80 dkruijs/qa_bert
 ```
 
 Then open a browser window on your host to the address `localhost:8080` to see the web app.

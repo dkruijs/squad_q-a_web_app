@@ -9,12 +9,11 @@ from transformers import BertTokenizer
 
 
 # TODO attribute all sources
-# TODO embed in a simple web app, input-output
-# TODO dockerize
-# TODO check other requirements
 # TODO clean up gitignore, other files
 # TODO error catching, logging
 # TODO all todos
+# TODO docstrings
+# TODO OPTIONAL visual indication 'waiting for response...' in web app
 
 
 class BertQAModel:
