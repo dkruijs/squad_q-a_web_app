@@ -84,6 +84,6 @@ if __name__ == '__main__':
 
     data = load_data(input_file_path, input_file_name)
 
-    validate(data, output_file_path, output_file_name, num_titles=10)
+    validate(data, output_file_path, output_file_name, num_titles=3)
 
 

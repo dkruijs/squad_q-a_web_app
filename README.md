@@ -37,7 +37,7 @@ The module `src/validate/validate.py` can be used to validate model results rela
 python -m src.validate.validate
 ```
 
-**Preparations for further development**:
+**Recreating the development environment**:
 
 * Create a virtual environment and activate it: 
 ``` 
@@ -82,10 +82,6 @@ I consulted the following online sources to arrive at this code product:
 * [Stack Overflow -- Nginx doesn't communicate with flask rest api](https://stackoverflow.com/questions/47739828/nginx-doesnt-communicate-with-flask-rest-api-docker)
 * For the `index.html` file that contains the web app, I used the `index.html` file from the Nanodegree SageMaker notebooks as a base for the HTML structure (I replaced the JavaScript code entirely). 
 
-Contributing
-------------
-_Coming soon_
-
 License
 ------------
 This project is copyright © 2020 Daan Kruijs. It is free software, and may be redistributed under the terms specified in the LICENSE file (GNU-GPLv3 license).
@@ -95,7 +91,6 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -105,44 +100,28 @@ Project Organization
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── notebooks          <- Jupyter notebooks for EDA and analysis. 
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
+    ├── docker-compose.yml <- The docker confiuguration. Start all with `docker-compose up`.
     │
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
+    │   ├── __init__.py    <- Makes src a Python module.
     │   │
-    |   ├── app           <- Code for the deployment web app
-    │   │   └── ...
+    |   ├── app           <- Code for the deployment web app.
+    │   │   ├── serve     <- Backend code for serving the model, called by the api.  
+    │   │   ├── website   <- HTML file for the web app.
+    │   │   ├── flask     <- Dockerfile for Flask.
+    │   │   ├── nginx     <- Dockerfile and configuration for nginx. 
+    │   │   └── api.py    <- Code for the API.
     │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
+    │   └── validate      <- Code for validating the model results.
+    │   
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Project structure based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
