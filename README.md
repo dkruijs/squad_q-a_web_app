@@ -1,15 +1,7 @@
 SQuAD Q&A web app
 ==============================
 
-A deep learning-based model based on Google's [ALBERT](https://github.com/google-research/ALBERT) and trained on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/) for answering reading comprehension questions, deployable as a web app. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
-
-***Currently a work in progress!*** To check out a thorough project description and to get a feel for the scope of this project, check out the [capstone project proposal (PDF)](docs/Capstone_proposal.pdf) I wrote as part of the Nanodegree.
-
-
-**Sources**:
-https://medium.com/@joyceye04/deploy-a-servable-bert-qa-model-using-tensorflow-serving-d848f9797d9
-https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/
-https://medium.com/datalab-log/serve-models-fast-with-flask-371726521591
+A deployable Q&A web app based on a version of Google's [BERT](https://github.com/google-research/bert) pretrained on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/), specifically [Huggingface transformers](https://huggingface.co/transformers/)' `TFBertForQuestionAnswering` model, for answering reading comprehension questions. This is my capstone project for the [Udacity Machine Learning Nanodegree](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t).
 
 Problem statement
 -----------------
@@ -18,7 +10,7 @@ The SQuAD dataset consists of 100,000 excerpts from high-quality Wikipedia artic
 ![](https://rajpurkar.github.io/mlx/qa-and-squad/example-squad.png)
 (image source: [blog by one of the dataset's maintainers on the reasoning behind and background of the SQuAD dataset](https://rajpurkar.github.io/mlx/qa-and-squad/))
 
-My goal in this project is to create an end-to-end deep learning product based on Google's [ALBERT](https://github.com/google-research/ALBERT) but not using the given pre-training scripts in Google's repo, only using the model artifacts and my own TensorFlow code. Of course, I do look at the ALBERT repo's code and other examples on the internet for conceptual inspiration, but I will cite all such influences via in-line comments.
+My goal in this project is to create an end-to-end deep learning product based on Google's [BERT](https://github.com/google-research/bert) but not using the given pre-training scripts in Google's repo, only using the model artifacts and my own TensorFlow code. Of course, I do look at the ALBERT repo's code and other examples on the internet for conceptual inspiration, but I will cite all such influences via in-line comments.
 
 The project being 'end-to-end' refers to an added goal that it (or an inference-ready trained production model setup) should be easily deployable right after cloning the repo, using docker or some other solution either locally or on a preferred cloud platform. 
 
@@ -28,6 +20,24 @@ _Coming soon_
 
 Getting started
 ------------
+
+**Running the web app**:
+
+Build and run the docker images (run command in root folder) -- build will take a while the first time!
+```
+docker-compose up
+```
+
+Then open a browser window on your host to the address `localhost:80` to see the web app. When you first run the model (by entering a question and pressing the 'Submit' button) it will download some model artifacts, this will take a while too.
+
+**Validating model results**
+
+The module `src/validate/validate.py` can be used to validate model results relative to given SQuAD answers. 
+```
+python -m src.validate.validate
+```
+
+**Recreating the development environment**:
 
 * Create a virtual environment and activate it: 
 ``` 
@@ -44,15 +54,33 @@ pip install -r requirements.txt
 
 Requirements
 ------------
-_Coming soon_
+This project uses the following external Python libraries (see `requirements.txt`):
 
-More information
-------------
-_Coming soon_
+```
+click==7.1.2
+python-dateutil==2.8.1
+pytz==2020.1
+six==1.15.0
+python-dotenv==0.13.0
+tensorflow==2.2.0
+scikit-learn==0.23.1
+sentencepiece==0.1.91
+Flask==1.1.2
+Flask-RESTful==0.3.8
+flask_cors
+transformers==3.0.1
+```
 
-Contributing
-------------
-_Coming soon_
+Sources consulted
+-----------------
+I consulted the following online sources to arrive at this code product: 
+
+* [Deploy a servable BERT QA model using Tensorflow Serving](https://medium.com/@joyceye04/deploy-a-servable-bert-qa-model-using-tensorflow-serving-d848f9797d9)
+* [Question answering with a fine-tuned BERT](https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/)
+* [Serve models fast with Flask](https://medium.com/datalab-log/serve-models-fast-with-flask-371726521591)
+* [Serve static files from docker via nginx](https://www.linkedin.com/pulse/serve-static-files-from-docker-via-nginx-basic-example-arun-kumar/)
+* [Stack Overflow -- Nginx doesn't communicate with flask rest api](https://stackoverflow.com/questions/47739828/nginx-doesnt-communicate-with-flask-rest-api-docker)
+* For the `index.html` file that contains the web app, I used the `index.html` file from the Nanodegree SageMaker notebooks as a base for the HTML structure (I replaced the JavaScript code entirely). 
 
 License
 ------------
@@ -63,7 +91,6 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -73,44 +100,28 @@ Project Organization
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── notebooks          <- Jupyter notebooks for EDA and analysis. 
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
+    ├── docker-compose.yml <- The docker confiuguration. Start all with `docker-compose up`.
     │
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
+    │   ├── __init__.py    <- Makes src a Python module.
     │   │
-    |   ├── app           <- Code for the deployment web app
-    │   │   └── ...
+    |   ├── app           <- Code for the deployment web app.
+    │   │   ├── serve     <- Backend code for serving the model, called by the api.  
+    │   │   ├── website   <- HTML file for the web app.
+    │   │   ├── flask     <- Dockerfile for Flask.
+    │   │   ├── nginx     <- Dockerfile and configuration for nginx. 
+    │   │   └── api.py    <- Code for the API.
     │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
+    │   └── validate      <- Code for validating the model results.
+    │   
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Project structure based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
